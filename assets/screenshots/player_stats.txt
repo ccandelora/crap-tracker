@@ -1,0 +1,45 @@
+// PLAYER STATS SCREEN SCREENSHOT
+//
+// ┌──────────────────────────────┐
+// │ ←  CC's Stats           ⋮ ○ │
+// │                              │
+// │  [Summary] [Sessions] [Rolls]│
+// │  --------------------------  │
+// │                              │
+// │  ┌──────────────────────┐    │
+// │  │  C                   │    │
+// │  │  ○   CC              │    │
+// │  │                      │    │
+// │  │  501 total rolls     │    │
+// │  │                      │    │
+// │  │ ┌──────────┐ ┌─────────┐ │
+// │  │ │ Total    │ │ Avg Rolls│ │
+// │  │ │ Sessions │ │ Per Sess │ │
+// │  │ │    2     │ │   250.5  │ │
+// │  │ └──────────┘ └─────────┘ │
+// │  └──────────────────────────┘    │
+// │                              │
+// │  WIN PERCENTAGE: 48.3%       │
+// │                              │
+// │  ROLL OUTCOMES               │
+// │  ┌─────────┐ ┌────────────┐  │
+// │  │ Naturals│ │ Seven Outs │  │
+// │  │   27%   │ │    12%     │  │
+// │  └─────────┘ └────────────┘  │
+// │  ┌─────────┐ ┌────────────┐  │
+// │  │  Craps  │ │Points Made │  │
+// │  │   11%   │ │    62%     │  │
+// │  └─────────┘ └────────────┘  │
+// │                              │
+// │  RECENT ACTIVITY             │
+// │  Last Session: Today, 11:15  │
+// │  Duration: 34 minutes        │
+// │  Rolls: 128                  │
+// │  Win/Loss: 56/72             │
+// │                              │
+// └──────────────────────────────┘
+//
+// The player stats screen shows detailed statistics for a single player
+// It includes tabs for Summary, Sessions, and Rolls
+// The summary tab displays total rolls, sessions, and key performance metrics
+// Win percentage, roll outcomes, and recent activity are clearly displayed 

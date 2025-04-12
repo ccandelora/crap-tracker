@@ -1,0 +1,130 @@
+# The Rail
+
+<p align="center">
+  <img src="assets/images/logo.png" alt="The Rail Logo - Dice with rail theme" width="300"/>
+</p>
+
+<p align="center">
+  A powerful dice tracking application for craps players
+</p>
+
+## Overview
+
+The Rail is a Flutter-based mobile and desktop application designed to help craps players track their dice rolls, analyze patterns, and improve their gameplay through statistical insights. The app provides comprehensive tracking capabilities, intuitive visualization, and real-time statistics to enhance your craps gaming experience.
+
+## Logo & Branding
+
+The app features a minimalist, high-contrast logo with a white 3D dice and bold "THE RAIL" text on a black background. This design represents the app's focus on precision dice tracking and the "rail" boundary of the craps table.
+
+### Setting Up the Logo
+
+To use the custom dice logo:
+
+1. Save the dice logo image as `lib/assets/images/logo.png`
+2. Run the app to see the logo in the AppBar
+
+### Generating Launcher Icons
+
+The app is configured to use the logo as launcher icons across all platforms. To generate icons:
+
+```bash
+flutter pub get
+flutter pub run flutter_launcher_icons
+```
+
+This will create appropriate sized icons for Android, iOS, web, and macOS.
+
+## Features
+
+- **Player Management** - Create and manage multiple player profiles
+- **Roll Tracking** - Record dice values with a beautiful, intuitive interface
+- **Session Statistics** - Track performance metrics during gambling sessions
+- **Detailed Analytics** - View comprehensive statistics and roll distributions
+- **Real-time Probabilities** - See the mathematical probability of upcoming rolls
+- **Dark & Light Themes** - Choose your preferred visual style
+
+## Screenshots
+
+<p align="center">
+  <img src="assets/screenshots/home_screen.png" alt="Home Screen" width="200"/>
+  <img src="assets/screenshots/roll_input.png" alt="Roll Input" width="200"/>
+  <img src="assets/screenshots/statistics.png" alt="Statistics" width="200"/>
+  <img src="assets/screenshots/player_stats.png" alt="Player Stats" width="200"/>
+</p>
+
+## Installation
+
+### Prerequisites
+- Flutter SDK (v3.7.0 or higher)
+- Dart SDK (v3.0.0 or higher)
+- iOS/Android development tools for mobile deployment
+- macOS/Windows/Linux development tools for desktop deployment
+
+### Setup Instructions
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/the-rail.git
+cd the-rail
+```
+
+2. Install dependencies:
+```bash
+flutter pub get
+```
+
+3. Run the build runner for Hive code generation:
+```bash
+flutter pub run build_runner build
+```
+
+4. Launch the app:
+```bash
+flutter run
+```
+
+## Usage
+
+### Getting Started
+
+1. **Add Players**: Create player profiles to track individual statistics
+2. **Start Rolling**: Select a player and begin tracking dice rolls
+3. **View Statistics**: Analyze performance metrics and patterns
+4. **Customize Settings**: Configure the app to your preferences
+
+### Key Functions
+
+- **Roll Input**: Quickly record dice values during gameplay
+- **Session Tracking**: Monitor performance across individual sessions
+- **Statistical Analysis**: View detailed metrics and trends over time
+- **Strategy Guide**: Access built-in guidance for optimal betting strategies
+
+## Technologies Used
+
+- **Flutter & Dart**: Cross-platform UI development
+- **Provider**: State management
+- **Hive**: Local data persistence
+- **FL Chart**: Data visualization
+- **Material Design 3**: Modern UI principles
+
+## Data Privacy
+
+The Rail stores all data locally on your device. No data is ever transmitted to external servers or shared with third parties.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contact
+
+For any questions or suggestions, please open an issue on GitHub or contact the developer at [your-email@example.com](mailto:your-email@example.com).
+
+---
+
+<p align="center">
+  Made with ❤️ for craps enthusiasts everywhere
+</p> 

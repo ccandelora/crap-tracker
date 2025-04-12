@@ -1,0 +1,46 @@
+// STATISTICS SCREEN SCREENSHOT
+//
+// ┌──────────────────────────────┐
+// │ ←  Statistics          ⋮ ○  │
+// │                              │
+// │  ROLL DISTRIBUTION           │
+// │                              │
+// │  ┌─────────────────────────┐ │
+// │  │                         │ │
+// │  │     █                   │ │
+// │  │   █ █ █                 │ │
+// │  │   █ █ █   █ █           │ │
+// │  │ █ █ █ █ █ █ █ █ █ █ █  │ │
+// │  │ 2 3 4 5 6 7 8 9 10 11 12│ │
+// │  └─────────────────────────┘ │
+// │                              │
+// │  PERFORMANCE METRICS         │
+// │                              │
+// │  ┌─────────────┐ ┌─────────┐ │
+// │  │ Win Rate    │ │ Points  │ │
+// │  │    54%      │ │ Made: 65%│ │
+// │  └─────────────┘ └─────────┘ │
+// │                              │
+// │  ┌─────────────┐ ┌─────────┐ │
+// │  │ Naturals    │ │ Craps   │ │
+// │  │    26%      │ │   12%   │ │
+// │  └─────────────┘ └─────────┘ │
+// │                              │
+// │  SESSION ANALYSIS            │
+// │                              │
+// │  Average Session Length:     │
+// │  27 rolls / 14 minutes       │
+// │                              │
+// │  Longest Winning Streak: 8   │
+// │  Longest Losing Streak: 4    │
+// │                              │
+// │  ┌──────────────────────┐    │
+// │  │    VIEW DETAILED     │    │
+// │  │       REPORT         │    │
+// │  └──────────────────────┘    │
+// │                              │
+// └──────────────────────────────┘
+//
+// The statistics screen shows a bar chart of roll distribution
+// It includes performance metrics (win rate, points made)
+// Session analysis shows average length and winning/losing streaks 
