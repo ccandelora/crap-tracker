@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import '../models/session.dart';
-import '../models/roll.dart';
+import '../models/dice_roll.dart';
 
 class SessionProvider with ChangeNotifier {
   List<Session> _sessions = [];
@@ -9,6 +9,7 @@ class SessionProvider with ChangeNotifier {
 
   List<Session> get sessions => _sessions;
   Session? get currentSession => _currentSession;
+  Session? get activeSession => _currentSession?.isActive == true ? _currentSession : null;
 
   Future<void> loadSessions() async {
     final box = await Hive.openBox<Session>('sessions');
@@ -19,11 +20,9 @@ class SessionProvider with ChangeNotifier {
 
   Future<void> createSession(String playerId) async {
     final session = Session(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
       playerId: playerId,
       startTime: DateTime.now(),
-      endTime: null,
-      rolls: [],
+      isActive: true,
     );
 
     final box = await Hive.openBox<Session>('sessions');
@@ -39,7 +38,7 @@ class SessionProvider with ChangeNotifier {
     final session = box.get(sessionId);
     
     if (session != null) {
-      session.endTime = DateTime.now();
+      session.endSession();
       await box.put(sessionId, session);
       
       final index = _sessions.indexWhere((s) => s.id == sessionId);
@@ -55,12 +54,12 @@ class SessionProvider with ChangeNotifier {
     }
   }
 
-  Future<void> addRollToSession(String sessionId, Roll roll) async {
+  Future<void> addRollToSession(String sessionId, DiceRoll roll) async {
     final box = await Hive.openBox<Session>('sessions');
     final session = box.get(sessionId);
     
     if (session != null) {
-      session.rolls.add(roll);
+      session.incrementRolls();
       await box.put(sessionId, session);
       
       final index = _sessions.indexWhere((s) => s.id == sessionId);
@@ -99,35 +98,32 @@ class SessionProvider with ChangeNotifier {
   }
 
   Session? getSessionById(String id) {
-    return _sessions.firstWhere((session) => session.id == id, orElse: () => null as Session);
+    try {
+      return _sessions.firstWhere((session) => session.id == id);
+    } catch (e) {
+      return null;
+    }
   }
 
-  bool get hasActiveSession => _currentSession != null;
+  bool get hasActiveSession => _currentSession != null && _currentSession!.isActive;
 
-  List<Roll> getAllRollsForPlayer(String playerId) {
-    List<Roll> allRolls = [];
-    for (var session in _sessions.where((s) => s.playerId == playerId)) {
-      allRolls.addAll(session.rolls);
-    }
-    allRolls.sort((a, b) => b.timestamp.compareTo(a.timestamp));
-    return allRolls;
+  List<DiceRoll> getAllRollsForPlayer(String playerId) {
+    // This needs to be implemented using the DiceRollProvider instead
+    // since the rolls are no longer stored in the Session class
+    return [];
   }
 
   Map<int, int> getRollDistribution(String playerId) {
-    final Map<int, int> distribution = {
+    // This needs to be implemented using the DiceRollProvider instead
+    return {
       2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0
     };
-    
-    final allRolls = getAllRollsForPlayer(playerId);
-    for (var roll in allRolls) {
-      distribution[roll.total] = (distribution[roll.total] ?? 0) + 1;
-    }
-    
-    return distribution;
   }
 
   int getTotalRollsForPlayer(String playerId) {
-    return getAllRollsForPlayer(playerId).length;
+    return _sessions
+        .where((s) => s.playerId == playerId)
+        .fold(0, (sum, session) => sum + session.totalRolls);
   }
 
   Duration getAverageSessionDuration(String playerId) {
@@ -139,9 +135,94 @@ class SessionProvider with ChangeNotifier {
     
     int totalSeconds = 0;
     for (var session in completedSessions) {
-      totalSeconds += session.endTime!.difference(session.startTime).inSeconds;
+      totalSeconds += session.durationInSeconds;
     }
     
     return Duration(seconds: totalSeconds ~/ completedSessions.length);
+  }
+
+  Future<Session?> loadActiveSessionForPlayer(String playerId) async {
+    final playerSessions = getSessionsByPlayerId(playerId);
+    final activeSession = playerSessions.where((s) => s.isActive).toList();
+    
+    if (activeSession.isNotEmpty) {
+      _currentSession = activeSession.first;
+    } else {
+      _currentSession = null;
+    }
+    
+    notifyListeners();
+    return _currentSession;
+  }
+
+  Future<Session> startSession(String playerId) async {
+    // First check if there's already an active session
+    final existingSession = await loadActiveSessionForPlayer(playerId);
+    if (existingSession != null && existingSession.isActive) {
+      return existingSession;
+    }
+    
+    // If not, create a new session
+    final session = Session(
+      playerId: playerId,
+      startTime: DateTime.now(),
+      isActive: true,
+    );
+
+    final box = await Hive.openBox<Session>('sessions');
+    await box.put(session.id, session);
+    
+    _sessions.insert(0, session);
+    _currentSession = session;
+    notifyListeners();
+    
+    return session;
+  }
+
+  Future<void> incrementSessionRollCount(String sessionId) async {
+    final box = await Hive.openBox<Session>('sessions');
+    final session = box.get(sessionId);
+    
+    if (session != null) {
+      session.incrementRolls();
+      await box.put(sessionId, session);
+      
+      final index = _sessions.indexWhere((s) => s.id == sessionId);
+      if (index >= 0) {
+        _sessions[index] = session;
+      }
+      
+      if (_currentSession?.id == sessionId) {
+        _currentSession = session;
+      }
+      
+      notifyListeners();
+    }
+  }
+
+  Future<bool> checkSevenOut(int rollTotal) async {
+    if (_currentSession == null || !_currentSession!.isActive) {
+      return false;
+    }
+    
+    // In craps, a 7 after the point is established means the shooter loses
+    if (rollTotal == 7) {
+      await endSession(_currentSession!.id);
+      return true;
+    }
+    
+    return false;
+  }
+  
+  Future<void> endActiveSession(int sessionRolls) async {
+    if (_currentSession != null && _currentSession!.isActive) {
+      await endSession(_currentSession!.id);
+    }
+  }
+
+  Future<void> loadSessionsByPlayer(String playerId) async {
+    await loadSessions();
+    _sessions = _sessions.where((s) => s.playerId == playerId).toList();
+    notifyListeners();
   }
 } 

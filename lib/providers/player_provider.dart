@@ -5,9 +5,11 @@ import '../models/player.dart';
 class PlayerProvider with ChangeNotifier {
   List<Player> _players = [];
   Player? _currentPlayer;
+  Player? _selectedPlayer;
 
   List<Player> get players => _players;
   Player? get currentPlayer => _currentPlayer;
+  Player? get selectedPlayer => _selectedPlayer;
 
   Future<void> loadPlayers() async {
     final box = await Hive.openBox<Player>('players');
@@ -16,7 +18,9 @@ class PlayerProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addPlayer(Player player) async {
+  Future<void> addPlayer(String name) async {
+    final player = Player(name: name);
+    
     final box = await Hive.openBox<Player>('players');
     await box.put(player.id, player);
     
@@ -40,6 +44,10 @@ class PlayerProvider with ChangeNotifier {
         _currentPlayer = player;
       }
       
+      if (_selectedPlayer?.id == player.id) {
+        _selectedPlayer = player;
+      }
+      
       notifyListeners();
     }
   }
@@ -54,6 +62,10 @@ class PlayerProvider with ChangeNotifier {
       _currentPlayer = null;
     }
     
+    if (_selectedPlayer?.id == playerId) {
+      _selectedPlayer = null;
+    }
+    
     notifyListeners();
   }
 
@@ -62,8 +74,20 @@ class PlayerProvider with ChangeNotifier {
     notifyListeners();
   }
   
-  Player? getPlayerById(String id) {
-    return _players.firstWhere((player) => player.id == id, orElse: () => null as Player);
+  void selectPlayer(String playerId) {
+    try {
+      _selectedPlayer = _players.firstWhere((player) => player.id == playerId);
+    } catch (e) {
+      _selectedPlayer = null;
+    }
+    notifyListeners();
   }
-} 
+  
+  Player? getPlayerById(String id) {
+    try {
+      return _players.firstWhere((player) => player.id == id);
+    } catch (e) {
+      return null;
+    }
+  }
 } 

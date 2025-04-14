@@ -1,0 +1,5 @@
+{
+  "testers": "your-tester-email@example.com",
+  "groups": "testers, internal",
+  "releaseNotes": "Latest test build of The Rail app.\n\nChanges:\n- Updated logo\n- UI improvements\n- Fixed player stats screen"
+} 

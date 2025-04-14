@@ -1,1 +1,32 @@
- 
+// This file represents the actual dice logo seen in the conversation
+// The logo shows a white 3D dice with black dots on a black background
+// Next to the dice is the text "THE RAIL" in bold white letters
+//
+// The actual binary image data would be stored here in a real PNG file
+// A user would need to replace this text placeholder with the actual PNG
+// image that was shared in the conversation.
+
+// This is a placeholder for the actual logo image
+// 
+// ┌──────────────────────────┐
+// │                          │
+// │    ┌───────────────┐     │
+// │    └───────────────┘     │
+// │                          │
+// │   ┌─────┐        ┌─────┐ │
+// │   │  •  │        │ •   │ │
+// │   │     │        │     │ │
+// │   │     │        │   • │ │
+// │   └─────┘        └─────┘ │
+// │                          │
+// │       THE RAIL           │
+// │                          │
+// │    ┌───────────────┐     │
+// │    └───────────────┘     │
+// │                          │
+// └──────────────────────────┘
+//
+// The actual logo is a deep blue square with rounded corners
+// containing two white dice (showing 1 and 2) with red dots
+// positioned between two horizontal white rail lines
+// and "THE RAIL" text underneath 

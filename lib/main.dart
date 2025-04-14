@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'models/player.dart';
 import 'models/dice_roll.dart';
@@ -19,6 +21,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
   try {
+    debugPrint('===== Starting app initialization =====');
+    
+    // Initialize Firebase
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    debugPrint('Firebase initialized successfully');
+    
     // Initialize Hive
     final appDocumentDirectory = await path_provider.getApplicationDocumentsDirectory();
     await Hive.initFlutter(appDocumentDirectory.path);
@@ -37,8 +47,11 @@ void main() async {
     
     // Run the app
     runApp(const MyApp());
-  } catch (e) {
+  } catch (e, stackTrace) {
     // Show error if initialization failed
+    debugPrint('===== CRITICAL ERROR: App initialization failed =====');
+    debugPrint('Error: $e');
+    debugPrint('Stack trace: $stackTrace');
     runApp(ErrorApp(error: e.toString()));
   }
 }

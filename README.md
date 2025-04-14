@@ -12,6 +12,50 @@
 
 The Rail is a Flutter-based mobile and desktop application designed to help craps players track their dice rolls, analyze patterns, and improve their gameplay through statistical insights. The app provides comprehensive tracking capabilities, intuitive visualization, and real-time statistics to enhance your craps gaming experience.
 
+## Testing & Distribution
+
+### Firebase App Distribution Setup
+
+To set up Firebase App Distribution for testing:
+
+1. **Create a Firebase project**:
+   - Go to the [Firebase Console](https://console.firebase.google.com/)
+   - Create a new project for "The Rail"
+
+2. **Register your app**:
+   - Add Android and/or iOS apps to your Firebase project
+   - Download the configuration files:
+     - `google-services.json` for Android (place in `android/app/`)
+     - `GoogleService-Info.plist` for iOS (place in `ios/Runner/`)
+
+3. **Create a Firebase App ID file**:
+   - Create a new file at `android/app/src/main/assets/firebase_app_id_file.json`
+   - Add your Firebase app IDs:
+   ```json
+   {
+     "android_app_id": "your-android-app-id",
+     "ios_app_id": "your-ios-app-id"
+   }
+   ```
+
+4. **Update tester information**:
+   - Edit `android/app/src/main/assets/firebase_app_distribution_config.json`
+   - Add your testers' email addresses
+
+### Deploying a Test Build
+
+To deploy a test build to Firebase App Distribution:
+
+```bash
+# For Android
+./scripts/deploy_firebase.sh android
+
+# For iOS
+./scripts/deploy_firebase.sh ios
+```
+
+Testers will receive an email with a link to download and install the app.
+
 ## Logo & Branding
 
 The app features a minimalist, high-contrast logo with a white 3D dice and bold "THE RAIL" text on a black background. This design represents the app's focus on precision dice tracking and the "rail" boundary of the craps table.

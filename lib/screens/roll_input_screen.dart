@@ -318,7 +318,9 @@ class _RollInputScreenState extends State<RollInputScreen> {
     );
     
     // Update the session roll count
-    await sessionProvider.incrementSessionRollCount();
+    if (sessionId != null) {
+      await sessionProvider.incrementSessionRollCount(sessionId);
+    }
     
     // Update player stats
     final updatedPlayer = Player(

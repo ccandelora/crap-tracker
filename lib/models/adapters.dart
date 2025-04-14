@@ -3,12 +3,11 @@ import 'package:crap_tracker/models/player.dart';
 import 'package:crap_tracker/models/dice_roll.dart';
 import 'package:crap_tracker/models/session.dart';
 
-class HiveAdapters {
-  static void registerAdapters() {
-    Hive.registerAdapter(PlayerAdapter());
-    Hive.registerAdapter(DiceRollAdapter());
-    Hive.registerAdapter(SessionAdapter());
-  }
+void registerAdapters() {
+  // Register all model adapters here
+  Hive.registerAdapter(PlayerAdapter());
+  Hive.registerAdapter(DiceRollAdapter());
+  Hive.registerAdapter(SessionAdapter());
 }
 
 class PlayerAdapter extends TypeAdapter<Player> {
