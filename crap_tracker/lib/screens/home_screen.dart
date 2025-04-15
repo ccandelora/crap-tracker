@@ -90,16 +90,18 @@ class _HomeScreenState extends State<HomeScreen> {
         leadingWidth: 0,
         centerTitle: true,
         title: Container(
-          width: MediaQuery.of(context).size.width * 0.9,
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width > 600 ? 400 : MediaQuery.of(context).size.width * 0.9,
+          ),
           padding: const EdgeInsets.symmetric(vertical: 12),
           child: Image.asset(
             'assets/images/logo.png', 
-            fit: BoxFit.contain,
+            fit: BoxFit.fitWidth,
             errorBuilder: (context, error, stackTrace) {
               // Fallback to the alternative path if the first one fails
               return Image.asset(
                 'lib/assets/images/logo.png',
-                fit: BoxFit.contain,
+                fit: BoxFit.fitWidth,
               );
             },
           ),

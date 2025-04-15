@@ -1,0 +1,26 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Generate screenshots for App Store"
+  lane :screenshots do
+    capture_screenshots(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      output_directory: "./fastlane/screenshots",
+      skip_open_summary: true
+    )
+  end
+  
+  desc "Build and upload to App Store"
+  lane :release do
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      export_method: "app-store"
+    )
+    upload_to_app_store(
+      skip_screenshots: false,
+      skip_metadata: false
+    )
+  end
+end

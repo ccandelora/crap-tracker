@@ -19,8 +19,6 @@ class DefaultFirebaseOptions {
       return web;
     }
     switch (defaultTargetPlatform) {
-      case TargetPlatform.android:
-        return android;
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
@@ -52,14 +50,6 @@ class DefaultFirebaseOptions {
     projectId: 'YOUR-PROJECT-ID',
     authDomain: 'YOUR-PROJECT-ID.firebaseapp.com',
     storageBucket: 'YOUR-PROJECT-ID.appspot.com',
-  );
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAFbZQebBgxLuat3I-tBxGpFESM-cNjShQ',
-    appId: '1:190629246870:android:fc73fee03148238d0bcfb7',
-    messagingSenderId: '190629246870',
-    projectId: 'the-rail-5b4e7',
-    storageBucket: 'the-rail-5b4e7.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(

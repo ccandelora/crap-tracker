@@ -23,23 +23,19 @@ To set up Firebase App Distribution for testing:
    - Create a new project for "The Rail"
 
 2. **Register your app**:
-   - Add Android and/or iOS apps to your Firebase project
-   - Download the configuration files:
-     - `google-services.json` for Android (place in `android/app/`)
+   - Add your iOS app to your Firebase project
+   - Download the configuration file:
      - `GoogleService-Info.plist` for iOS (place in `ios/Runner/`)
 
 3. **Create a Firebase App ID file**:
-   - Create a new file at `android/app/src/main/assets/firebase_app_id_file.json`
-   - Add your Firebase app IDs:
+   - Add your Firebase app ID:
    ```json
    {
-     "android_app_id": "your-android-app-id",
      "ios_app_id": "your-ios-app-id"
    }
    ```
 
 4. **Update tester information**:
-   - Edit `android/app/src/main/assets/firebase_app_distribution_config.json`
    - Add your testers' email addresses
 
 ### Deploying a Test Build
@@ -47,9 +43,6 @@ To set up Firebase App Distribution for testing:
 To deploy a test build to Firebase App Distribution:
 
 ```bash
-# For Android
-./scripts/deploy_firebase.sh android
-
 # For iOS
 ./scripts/deploy_firebase.sh ios
 ```
@@ -69,14 +62,14 @@ To use the custom dice logo:
 
 ### Generating Launcher Icons
 
-The app is configured to use the logo as launcher icons across all platforms. To generate icons:
+The app is configured to use the logo as launcher icons. To generate icons:
 
 ```bash
 flutter pub get
 flutter pub run flutter_launcher_icons
 ```
 
-This will create appropriate sized icons for Android, iOS, web, and macOS.
+This will create appropriate sized icons for iOS, web, and macOS.
 
 ## Features
 
@@ -101,8 +94,8 @@ This will create appropriate sized icons for Android, iOS, web, and macOS.
 ### Prerequisites
 - Flutter SDK (v3.7.0 or higher)
 - Dart SDK (v3.0.0 or higher)
-- iOS/Android development tools for mobile deployment
-- macOS/Windows/Linux development tools for desktop deployment
+- iOS development tools for mobile deployment
+- macOS development tools for desktop deployment
 
 ### Setup Instructions
 
