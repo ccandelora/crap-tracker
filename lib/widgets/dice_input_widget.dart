@@ -36,7 +36,7 @@ class _DiceInputWidgetState extends State<DiceInputWidget> {
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
           ),
           child: const Text(
-            'Record Roll',
+            'Record Data',
             style: TextStyle(fontSize: 18),
           ),
         ),

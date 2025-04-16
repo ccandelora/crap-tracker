@@ -58,7 +58,7 @@ class _RollInputScreenState extends State<RollInputScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.player.name}\'s Rolls'),
+        title: Text('${widget.player.name}\'s Data Analysis'),
         actions: [
           Consumer<SessionProvider>(
             builder: (context, sessionProvider, child) {
@@ -68,14 +68,14 @@ class _RollInputScreenState extends State<RollInputScreen> {
                   onPressed: () async {
                     await sessionProvider.startSession(widget.player.id);
                   },
-                  tooltip: 'Start New Session',
+                  tooltip: 'Start New Analysis Session',
                 );
               }
               
               return IconButton(
                 icon: const Icon(Icons.stop),
                 onPressed: () => _confirmEndSession(sessionProvider),
-                tooltip: 'End Session',
+                tooltip: 'End Analysis Session',
               );
             },
           ),
@@ -283,7 +283,7 @@ class _RollInputScreenState extends State<RollInputScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Enter Roll Values',
+            'Enter Data Values',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,

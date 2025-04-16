@@ -72,14 +72,14 @@ class SessionCardWidget extends StatelessWidget {
                   _buildInfoItem(
                     context,
                     Icons.person,
-                    'Player',
+                    'User',
                     playerName,
                   ),
                   const SizedBox(width: 16),
                   _buildInfoItem(
                     context,
-                    Icons.casino,
-                    'Rolls',
+                    Icons.analytics,
+                    'Data Points',
                     session.totalRolls.toString(),
                   ),
                 ],

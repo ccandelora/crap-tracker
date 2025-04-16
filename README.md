@@ -1,16 +1,16 @@
-# The Rail
+# Dice Analytics Pro
 
 <p align="center">
-  <img src="assets/images/logo.png" alt="The Rail Logo - Dice with rail theme" width="300"/>
+  <img src="assets/images/logo.png" alt="Dice Analytics Logo - Analysis tool" width="300"/>
 </p>
 
 <p align="center">
-  A powerful dice tracking application for craps players
+  A powerful dice roll analysis tool for statistical pattern recognition
 </p>
 
 ## Overview
 
-The Rail is a Flutter-based mobile and desktop application designed to help craps players track their dice rolls, analyze patterns, and improve their gameplay through statistical insights. The app provides comprehensive tracking capabilities, intuitive visualization, and real-time statistics to enhance your craps gaming experience.
+Dice Analytics Pro is a Flutter-based mobile and desktop application designed to help users track dice rolls, analyze patterns, and understand statistical distributions. The app provides comprehensive data visualization, intuitive tracking capabilities, and real-time statistics to enhance understanding of probability and statistical outcomes.
 
 ## Testing & Distribution
 

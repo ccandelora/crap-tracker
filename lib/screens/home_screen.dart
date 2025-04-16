@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fit: BoxFit.contain,
               ),
             ),
-            const Text('The Rails'),
+            const Text('Dice Analytics Pro'),
           ],
         ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -87,8 +87,8 @@ class _HomeScreenState extends State<HomeScreen> {
           
           return FloatingActionButton.extended(
             onPressed: () => _navigateToRollInput(playerProvider.selectedPlayer!),
-            label: const Text('Start Rolling'),
-            icon: const Icon(Icons.casino),
+            label: const Text('Analyze Data'),
+            icon: const Icon(Icons.analytics),
           );
         },
       ),
@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 16),
           Text(
-            'No Players Yet',
+            'No Users Yet',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -116,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Add a player to start tracking dice rolls',
+            'Add a user to start analyzing dice data',
             style: TextStyle(
               fontSize: 16,
               color: Colors.grey.shade600,

@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, _) => MaterialApp(
-          title: 'Craps Tracker',
+          title: 'Dice Analytics Tool',
           themeMode: themeProvider.themeMode,
           theme: themeProvider.getLightTheme(),
           darkTheme: themeProvider.getDarkTheme(),
@@ -95,7 +95,7 @@ class ErrorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Craps Tracker - Error',
+      title: 'Dice Analytics - Error',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,

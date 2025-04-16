@@ -54,12 +54,12 @@ class _PlayerStatsScreenState extends State<PlayerStatsScreen> with SingleTicker
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.player.name}\'s Stats'),
+        title: Text('${widget.player.name}\'s Analytics'),
         bottom: TabBar(
           controller: _tabController,
           tabs: const [
             Tab(text: 'OVERVIEW'),
-            Tab(text: 'SESSIONS'),
+            Tab(text: 'DATASETS'),
           ],
         ),
       ),
@@ -221,7 +221,7 @@ class _PlayerStatsScreenState extends State<PlayerStatsScreen> with SingleTicker
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Roll Distribution',
+                  'Data Distribution',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -261,7 +261,7 @@ class _PlayerStatsScreenState extends State<PlayerStatsScreen> with SingleTicker
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Next Roll Probabilities',
+                  'Statistical Probability Analysis',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
